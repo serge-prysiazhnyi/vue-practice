@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+       <div class="container">
+           <div 
+           class="block drag-item"
+           draggable="true"
+           v-for="(item, index) in list" 
+           v-if="item.status != 'removed'"
+           >{{item}}
+                <div 
+                    v-bind:style="{ backgroundColor: item.color, height: item.height + 'px' }" 
+                    class="blocks">
+                <button class="merge" v-on:click="merge(index, item.height)">Merge</button>
+                </div>
+                <input 
+                v-on:change="onChange(index, item.height)" 
+                type="range" min="100" max="300" 
+                v-model="item.height">
+           </div>
+                <button v-on:click="onFilter">Filter</button>
+       </div>
+<script src="main.js"></script>
+</body>
+</html>
